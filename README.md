@@ -111,9 +111,10 @@ Any static host works. With Vercel CLI from the project folder:
 vercel --prod        # first run links/creates the project, then deploys
 ```
 
-`vercel.json` makes `/` serve `demo.html` (the showcase). For a **real client**, set `/` to
-serve their filled `index.html` instead (edit the rewrite, or just rename their filled file to
-`index.html` and delete the rewrite).
+`vercel.json` redirects `/` → `/demo.html` so the deployed root shows the filled showcase
+while `index.html` stays the editable template. **For a real client deploy:** fill `index.html`
+with the client's values and **delete `vercel.json`** (or repoint the redirect) so `/` serves
+the client's `index.html` directly.
 
 ---
 
