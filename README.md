@@ -3,13 +3,15 @@
 A reusable, **WordPress-free** website template for local home-services businesses
 (HVAC, plumbing, electrical, roofing, etc.), wired for **GoHighLevel (GHL)**.
 
-It is a **pixel-exact rebuild** of a real, high-converting HVAC homepage — same layout,
-fonts, colors, spacing, and motion — but with **every client-specific value turned into a
-`{{VARIABLE}}`** and the original site's form / chat / scheduler swapped for GHL embeds.
+It is a **pixel-exact rebuild** of a real, high-converting HVAC site — same layout, fonts,
+colors, spacing, and motion — rebuilt as a **22-page static website** with the original's
+form / chat / scheduler swapped for GHL embeds, and the homepage also provided as a fully
+`{{VARIABLE}}`-tokenized template.
 
-> **Live demo:** _(added after first deploy — see Vercel project URL)_
-> **One template → many clients.** Copy the folder, fill the variables, swap the images,
-> paste 3 GHL IDs, deploy.
+> **Live demo:** https://ghl-site-template.vercel.app
+> **Repo:** https://github.com/mmsharif3232-cell/ghl-site-template
+> **One template → many clients.** Clone the client's pages, swap content + images, paste 3
+> GHL IDs, deploy.
 
 ---
 
@@ -32,17 +34,45 @@ fonts, colors, spacing, and motion — but with **every client-specific value tu
 
 | File / folder | What it is | Do you edit it? |
 |---|---|---|
-| **`index.html`** | The template page. Holds every `{{TOKEN}}` and the `REPEAT` blocks. | **Yes** — fill tokens per client |
+| **`index.html` + 21 sibling pages** | The **live 22-page website** (home, services, about, contact, etc.). Real content, interlinked, deploy-ready. | **Yes** — edit content per client |
+| **`template.html`** | The homepage as a fully `{{TOKEN}}`-ized template (54 variables + `REPEAT` blocks). The reusable starting point. | **Yes** — fill tokens |
 | **`styles.css`** | The real compiled theme stylesheet (YOOtheme/UIkit). **This is what makes it look identical.** | **No** — leave it alone |
-| **`assets/`** | Logos, badges, icons, photos + `uikit.min.js` (the JS runtime). | **Yes** — swap brand images |
-| **`VARIABLES.md`** | The full intake checklist: all 54 tokens grouped, with examples. **Start here for a new client.** | Reference |
-| `demo.html` | A fully-filled example (the original brand) — what the live demo serves. | Reference only |
-| `vercel.json` | Tells Vercel to serve the demo at `/`. | Rarely |
-| `build.py` / `fill_preview.py` | How the template was generated from a saved page + how the demo is filled. | Maintainers only |
+| **`assets/`** | Logos, badges, icons, photos (70 files) + `uikit.min.js` (the JS runtime). | **Yes** — swap brand images |
+| **`VARIABLES.md`** | The full intake checklist: all 54 homepage tokens grouped, with examples. **Start here for a new client.** | Reference |
+| `build.py` / `fill_preview.py` | How `template.html` was generated from a saved homepage + how it's filled. | Maintainers |
+| `build_site.py` | How the 22-page site is assembled from the saved page exports (see §6). | Maintainers |
+
+Root `/` serves `index.html` (the homepage). No `vercel.json` needed — it's a plain static site.
 
 ---
 
-## 3. What's interchangeable (the important part)
+## 3. The 22 pages
+
+All pages share the **same header, footer, navigation, fonts, colors, and CSS** — change the
+chrome once and it updates everywhere (it's assembled from one shared frame).
+
+**Cloned 1:1 from the real site (7):**
+`index.html` (home) · `about.html` · `contact.html` · `reviews.html` · `cities.html` ·
+`air-conditioning.html` (service category) · `ac-repair.html` (service detail)
+
+**Generated from the two service templates (15)** — identical layout, correct service names:
+- *Categories* (from `air-conditioning.html`): `heating.html`, `indoor-air-quality.html`
+- *Details* (from `ac-repair.html`): `ac-maintenance.html`, `ac-replacement.html`,
+  `ductless-mini-splits.html`, `thermostat-repair.html`, `heater-repair.html`,
+  `heater-installation.html`, `heater-maintenance.html`, `heat-pumps.html`,
+  `heat-pump-repair.html`, `furnaces.html`, `furnace-repair.html`,
+  `furnace-installation.html`, `duct-cleaning.html`
+
+> The generated service pages reuse the AC pages' layout with the service name swapped in
+> headings/titles. Some body copy still reflects the AC source — **replace generated-page body
+> copy with the client's real service copy before launch** (the layout is final; the words are
+> placeholders). To clone a generated page exactly instead, save that real page and add it to
+> the `SAVED` list in `build_site.py`.
+
+**Add / edit / remove pages:** edit the page's `.html` directly, or re-run `build_site.py`
+(§6). To add a new page type, save its export and register it in `build_site.py`.
+
+## 4. What's interchangeable (the important part)
 
 Everything a client sees is changeable. There are **four levels**, easiest → most hands-on:
 
@@ -90,60 +120,51 @@ design — changing it defeats the purpose.
 
 ---
 
-## 4. Make a new client site (checklist)
+## 5. Make a new client site
 
-1. **Copy** this folder to a new client folder/repo.
-2. Open **`VARIABLES.md`**, collect all 54 values from the client (Noor's intake).
-3. **Find-and-replace** every `{{TOKEN}}` in `index.html` with the client value.
-4. **Expand** the two `REPEAT` blocks (reviews, cities) to the right counts.
-5. **Edit** the literal lists (Level 3) to match the client's actual services/nav/links.
-6. **Swap** `assets/` images for the client's brand (Level 4).
-7. Paste the **3 GHL IDs** (form, calendar, chat) — see GHL → Sites/Calendars.
-8. Open `index.html` in a browser to QA, then **deploy** (below).
+**A. Full multi-page site (what we did here):**
+1. Save each of the client's real pages (**⌘S → "Web Page, Complete"**) into `~/Downloads`.
+2. Point the `SAVED` / derivation lists at the top of `build_site.py` at those files; run
+   `python3 build_site.py`.
+3. Swap `assets/` images for the client's brand; edit the nav/footer link lists; paste the
+   3 GHL IDs; deploy.
 
----
+**B. Homepage-only from the token template:**
+1. Copy `template.html`; collect the 54 values via **`VARIABLES.md`** (Noor's intake).
+2. Find-and-replace every `{{TOKEN}}`; expand the `REPEAT` blocks; edit the Level-3 lists.
+3. Swap `assets/` images; paste the 3 GHL IDs; save as `index.html`; deploy.
 
-## 5. Deploy
+## 6. Deploy
 
-Any static host works. With Vercel CLI from the project folder:
-
+Plain static site — any host works. With Vercel CLI from the project folder:
 ```bash
 vercel --prod        # first run links/creates the project, then deploys
 ```
+Root `/` serves `index.html` automatically. Re-run the same command to redeploy after edits.
 
-`vercel.json` redirects `/` → `/demo.html` so the deployed root shows the filled showcase
-while `index.html` stays the editable template. **For a real client deploy:** fill `index.html`
-with the client's values and **delete `vercel.json`** (or repoint the redirect) so `/` serves
-the client's `index.html` directly.
+## 7. How it was built (maintainers)
 
----
+- **`build.py`** turns a **"Save Page As → Webpage, Complete"** export of the homepage into
+  `template.html`: strips all `<script>`/WordPress/Gravity/analytics/chat code, keeps the exact
+  DOM + real theme CSS (→ `styles.css`), copies brand images to `assets/`, swaps
+  form/chat/scheduler for GHL embeds, and tokenizes client strings to `{{VARS}}`.
+- **`fill_preview.py`** fills `template.html` with reference values (+ a static demo form).
+- **`build_site.py`** assembles the 22-page site: it reuses one shared frame (head + header +
+  footer + GHL runtime), pixel-clones each saved interior page's `<main>` (same cleaning as
+  above), generates the remaining service pages from the AC templates, and rewrites every
+  internal link to a flat local slug so the nav works as one connected site.
 
-## 6. How it was built (maintainers)
+To rebuild after editing a source page, re-run the relevant script. For a different vertical,
+start from fresh Save-Complete exports and adapt the path/anchor lists at the top of the scripts.
 
-The template was generated mechanically from a browser **"Save Page As → Webpage, Complete"**
-export of the reference homepage, via **`build.py`**:
+## 8. Notes & caveats
 
-- strips all `<script>`/`<noscript>`, WordPress/Gravity/CleanTalk/analytics/chat code;
-- keeps the exact DOM + the real theme CSS (vendored into `styles.css`);
-- copies brand images into `assets/`, rewrites asset URLs;
-- swaps the form/chat/scheduler for GHL embeds;
-- replaces client strings with `{{TOKENS}}` and marks repeating lists.
-
-`fill_preview.py` produces `demo.html` by filling the tokens with the reference values (and a
-static demo form). To regenerate the template from an updated source, re-point the paths at the
-top of `build.py` and re-run. To clone a **different** vertical, start from a fresh
-Save-Complete export and adapt the anchors in `build.py`.
-
----
-
-## 7. Notes & caveats
-
-- **Demo GHL embeds are placeholders** (`DEMO_*` IDs) — the contact form on the live demo is a
-  static mockup; real sites use the GHL iframe via `{{GHL_CONTACT_FORM_ID}}`.
-- **Images load from the reference brand's host by default** (see Level 4). For a launched
+- **Demo forms are static mockups**; real sites use the GHL form iframe via
+  `{{GHL_CONTACT_FORM_ID}}` (chat + calendar via their IDs).
+- **Images load from the reference brand's host by default** (see §4 Level 4). For a launched
   client site, re-host images on the client's domain/CDN so nothing depends on a third party.
-- The original site used **two phone numbers** (a call-tracking number in the header, the
-  office line in the footer). This template **unifies both to `{{PHONE}}`**. Split it back if a
-  client needs two (search `tel:{{PHONE}}`).
-- **Brand/trademark:** the demo reproduces a real company's branding for reference. Use it as a
-  layout/template reference; ship client sites with the *client's* branding, copy, and assets.
+- **Generated service pages** carry the AC pages' body copy under correct service headings —
+  replace that body copy with the client's real copy before launch (see §3).
+- The original site used **two phone numbers**; this template **unifies both to `{{PHONE}}`**.
+- **Brand/trademark:** the demo reproduces a real company's branding for reference. Ship client
+  sites with the *client's* branding, copy, and assets.
