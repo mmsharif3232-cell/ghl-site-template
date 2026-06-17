@@ -1,5 +1,5 @@
 {
-  "_README": "Onboard a client: edit the values below, then run `python3 generate.py` and deploy the dist/ folder. Only this file changes per client. Anything you leave out falls back to a sensible generic default (see generate.py).",
+  "_README": "Onboard a client: copy this to clients/<name>.json, fill the values, then run `python3 generate.py clients/<name>.json` and deploy the dist/ folder. Anything you leave out falls back to a sensible generic default (see generate.py). This root file is a neutral sample.",
 
   "business_name": "Summit Heating & Air Conditioning",
   "business_short_name": "Summit Air",
@@ -8,15 +8,15 @@
   "email": "info@summitair.com",
   "city": "Springfield",
   "address": "100 Main Street, Springfield, IL 62701",
-  "license": "LIC# 100200300",
+  "license": "Licensed & Insured",
   "office_hours": "Mon – Fri: 8:00am – 6:00pm<br>Sat: 9:00am – 2:00pm<br>Sun: Closed",
-  "year_founded": "1998",
-  "years_in_business": "25",
+  "year_founded": "",
+  "years_in_business": "many",
   "site_url": "https://summitair.example.com",
 
-  "ghl_contact_form_id": "PASTE_FORM_ID",
-  "ghl_calendar_id": "PASTE_CALENDAR_ID",
-  "ghl_chat_widget_id": "PASTE_CHAT_WIDGET_ID",
+  "ghl_contact_form_id": "",
+  "ghl_calendar_id": "",
+  "ghl_chat_widget_id": "",
 
   "social_facebook": "#",
   "social_instagram": "#",
@@ -46,7 +46,6 @@
   ],
 
   "copy_overrides": {
-    "_note": "Optional. Add any {{TOKEN}} (lowercased) here to override its default copy, e.g. \"hero_headline\": \"...\".",
-    "hero_headline": "Reliable Heating & Air Conditioning You Can Count On"
+    "HERO_HEADLINE": "Reliable Heating & Air Conditioning You Can Count On"
   }
 }

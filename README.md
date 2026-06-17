@@ -125,15 +125,17 @@ design — changing it defeats the purpose.
 
 **Edit one file, run one command, deploy.** No find-and-replace, no touching the HTML.
 
-1. **Open `config.json`** and fill in the client's details — business name, phone, email, city,
-   address, hours, the 3 GHL IDs, social links, logo URL, brand colors, the `cities` they serve,
-   and a few `reviews`. Anything you leave out falls back to a sensible generic default.
-2. **Run** `python3 generate.py` → builds a finished, fully-filled site in **`dist/`**
-   (all 22 pages + `sitemap.xml` + `robots.txt`, brand colors applied, zero leftover tokens).
-3. **Deploy** the `dist/` folder: `vercel --prod --cwd dist` (or drag `dist/` into any host).
+1. **Make the client's config** — copy `config.json` to `clients/<name>.json` and fill in the
+   details: business name, phone, email, city, address, hours, the 3 GHL IDs, social links,
+   logo URL, brand colors, the `cities` they serve, and a few `reviews`. Anything you leave out
+   falls back to a sensible generic default. (Editing the root `config.json` directly also works.)
+2. **Run** `python3 generate.py clients/<name>.json` → builds a finished, fully-filled site in
+   **`dist/`** (all 22 pages + `sitemap.xml` + `robots.txt`, brand colors applied, zero tokens).
+3. **Deploy** the `dist/` folder to that client's own Vercel project:
+   `vercel link --cwd dist --project <name> --yes` then `vercel --prod --cwd dist`.
 
-That's it. To re-onboard or tweak, edit `config.json` and re-run — the token source pages are
-never modified.
+That's it. To re-onboard or tweak, edit the config and re-run — the token source pages are never
+modified. See `clients/fivestar-hvac.json` for a real filled example (live: fivestar-hvac.vercel.app).
 
 ```jsonc
 // config.json — the only file you edit per client

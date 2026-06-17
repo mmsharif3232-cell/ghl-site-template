@@ -1,0 +1,53 @@
+{
+  "_README": "Onboard a client: edit the values below, then run `python3 generate.py` and deploy the dist/ folder. Only this file changes per client. Anything you leave out falls back to a sensible generic default (see generate.py).",
+
+  "business_name": "Five Star HVAC Services, Inc.",
+  "business_short_name": "Five Star HVAC",
+  "phone": "7733866993",
+  "phone_display": "(773) 386-6993",
+  "email": "info@fivestar247.com",
+  "city": "Chicago",
+  "address": "5638 N Elston Ave, Chicago, IL 60646",
+  "license": "Licensed & Insured",
+  "office_hours": "Mon – Fri: 8:00am – 6:00pm<br>Sat: 8:00am – 2:00pm<br>24/7 Emergency Service Available",
+  "year_founded": "",
+  "years_in_business": "many",
+  "site_url": "https://fivestar247.com",
+
+  "ghl_contact_form_id": "",
+  "ghl_calendar_id": "",
+  "ghl_chat_widget_id": "",
+
+  "social_facebook": "#",
+  "social_instagram": "#",
+  "social_youtube": "#",
+  "social_linkedin": "#",
+
+  "logo_url": "assets/logo-placeholder.svg",
+  "og_image_url": "assets/placeholder.svg",
+  "favicon_url": "assets/logo-placeholder.svg",
+  "favicon_svg_url": "assets/logo-placeholder.svg",
+  "manufacturer_badge_url": "",
+  "directions_url": "https://www.google.com/maps/dir/?api=1&destination=5638+N+Elston+Ave,+Chicago,+IL+60646",
+  "service_area_map_embed_url": "https://www.google.com/maps?q=5638+N+Elston+Ave,+Chicago,+IL+60646&output=embed",
+
+  "brand_primary": "#fc7504",
+  "brand_dark": "#182d43",
+
+  "cities": ["Chicago", "Evanston", "Skokie", "Oak Park", "Lincolnwood", "Park Ridge", "Niles", "Des Plaines", "Norridge", "Cicero"],
+
+  "reviews": [
+    {"author": "Michael D.", "text": "Same-day furnace repair on a freezing Chicago night. Fast, professional, and fairly priced. Couldn't ask for more.", "time": "3 days ago"},
+    {"author": "Jennifer L.", "text": "Technician was on time, explained everything clearly, and had our AC running in under an hour. Highly recommend.", "time": "1 week ago"},
+    {"author": "Robert S.", "text": "Installed a whole new high-efficiency system. Clean work, great communication, and the house has never been more comfortable.", "time": "2 weeks ago"},
+    {"author": "Amanda K.", "text": "Honest assessment and no pushy upsell. They fixed the actual problem and saved us a costly replacement.", "time": "3 weeks ago"},
+    {"author": "David P.", "text": "Signed up for their maintenance plan after a great first visit. Reliable, friendly, and thorough every time.", "time": "1 month ago"},
+    {"author": "Priya N.", "text": "Quick response, fair quote, and excellent duct cleaning. The whole team was courteous and professional.", "time": "1 month ago"}
+  ],
+
+  "copy_overrides": {
+    "HERO_HEADLINE": "Chicago's Trusted Heating & Air Conditioning Experts",
+    "HERO_SUBHEADLINE": "Fast, reliable, 5-star HVAC service for your home or business.",
+    "SERVICES_INTRO": "From AC and furnace repair to new installations, boilers, ductwork, and indoor air quality — our licensed technicians keep Chicago comfortable in every season."
+  }
+}

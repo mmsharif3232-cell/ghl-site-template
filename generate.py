@@ -10,13 +10,15 @@ Produces a finished, fully-filled website in  dist/  (deploy that folder).
 - Copies assets/ + styles.css and writes sitemap.xml + robots.txt.
 The token source pages (index.html, about.html, ... at repo root) are never modified.
 """
-import json, os, re, shutil, itertools
+import json, os, re, shutil, itertools, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(HERE, "dist")
 SRC_PAGES = sorted(f for f in os.listdir(HERE)
                    if f.endswith(".html") and f not in ("template.html",))
-cfg = json.load(open(os.path.join(HERE, "config.json"), encoding="utf-8"))
+# python3 generate.py [config.json | clients/<name>.json]
+CFG_PATH = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "config.json")
+cfg = json.load(open(CFG_PATH, encoding="utf-8"))
 
 c = cfg.get("city", "your area")
 n = cfg.get("business_name", "Our Company")
@@ -132,6 +134,13 @@ def fill_cities(html):
 
 def fill_page(html):
     html = re.sub(r'<!-- TEMPLATE —.*?-->\n?', '', html, flags=re.S)  # filled site is not a template
+    html = html.replace("{{CITY}} County", "the {{CITY}} area")        # avoid invalid "Xville County"
+    if not TOK.get("YEAR_FOUNDED"):                                    # no founding year -> year-free copy
+        for a, b in [("in business since {{YEAR_FOUNDED}}", "in business for many years"),
+                     ("Back in {{YEAR_FOUNDED}},", "Over the years,"),
+                     ("since {{YEAR_FOUNDED}}", "for many years"),
+                     ("in {{YEAR_FOUNDED}}", "over the years")]:
+            html = html.replace(a, b)
     html = fill_reviews(html)
     html = fill_cities(html)
     for tok, val in TOK.items():
