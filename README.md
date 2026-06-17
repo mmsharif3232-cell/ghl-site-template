@@ -34,15 +34,15 @@ form / chat / scheduler swapped for GHL embeds, and the homepage also provided a
 
 | File / folder | What it is | Do you edit it? |
 |---|---|---|
-| **`index.html` + 21 sibling pages** | The **live 22-page website** (home, services, about, contact, etc.). Real content, interlinked, deploy-ready. | **Yes** — edit content per client |
-| **`template.html`** | The homepage as a fully `{{TOKEN}}`-ized template (54 variables + `REPEAT` blocks). The reusable starting point. | **Yes** — fill tokens |
-| **`styles.css`** | The real compiled theme stylesheet (YOOtheme/UIkit). **This is what makes it look identical.** | **No** — leave it alone |
-| **`assets/`** | Logos, badges, icons, photos (70 files) + `uikit.min.js` (the JS runtime). | **Yes** — swap brand images |
-| **`VARIABLES.md`** | The full intake checklist: all 54 homepage tokens grouped, with examples. **Start here for a new client.** | Reference |
-| `build.py` / `fill_preview.py` | How `template.html` was generated from a saved homepage + how it's filled. | Maintainers |
-| `build_site.py` | How the 22-page site is assembled from the saved page exports (see §6). | Maintainers |
-
-Root `/` serves `index.html` (the homepage). No `vercel.json` needed — it's a plain static site.
+| ⭐ **`config.json`** | **The one file you edit per client.** Name, phone, city, GHL IDs, cities, reviews, colors… | **Yes — per client** |
+| ⭐ **`generate.py`** | The onboarding command. Reads `config.json` → writes the finished site to `dist/`. | Run it |
+| **`dist/`** | The **generated, fully-filled, deploy-ready** site (22 pages + sitemap + robots). Rebuilt each run; git-ignored. | Deploy it |
+| `index.html` + 21 sibling pages | The **token source** pages (`{{TOKENS}}` + generic copy). `generate.py` fills these into `dist/`. | No — auto-generated |
+| `styles.css` | The real compiled theme stylesheet (YOOtheme/UIkit). **This is what makes it look good.** | No |
+| `assets/` | Placeholder logo/badges/photos + brand SVGs + `uikit.min.js` runtime. | Swap per client |
+| `VARIABLES.md` | Reference: every token grouped, with examples. | Reference |
+| `template.html` | The homepage as the master token page (chrome source for `build_site.py`). | Maintainers |
+| `build.py` / `build_site.py` / `fill_preview.py` | Layout generators (regenerate the token source — see §7). | Maintainers |
 
 ---
 
@@ -121,19 +121,28 @@ design — changing it defeats the purpose.
 
 ---
 
-## 5. Make a new client site
+## 5. Onboard a new client (the easy way) ⭐
 
-**A. Full multi-page site (what we did here):**
-1. Save each of the client's real pages (**⌘S → "Web Page, Complete"**) into `~/Downloads`.
-2. Point the `SAVED` / derivation lists at the top of `build_site.py` at those files; run
-   `python3 build_site.py`.
-3. Swap `assets/` images for the client's brand; edit the nav/footer link lists; paste the
-   3 GHL IDs; deploy.
+**Edit one file, run one command, deploy.** No find-and-replace, no touching the HTML.
 
-**B. Homepage-only from the token template:**
-1. Copy `template.html`; collect the 54 values via **`VARIABLES.md`** (Noor's intake).
-2. Find-and-replace every `{{TOKEN}}`; expand the `REPEAT` blocks; edit the Level-3 lists.
-3. Swap `assets/` images; paste the 3 GHL IDs; save as `index.html`; deploy.
+1. **Open `config.json`** and fill in the client's details — business name, phone, email, city,
+   address, hours, the 3 GHL IDs, social links, logo URL, brand colors, the `cities` they serve,
+   and a few `reviews`. Anything you leave out falls back to a sensible generic default.
+2. **Run** `python3 generate.py` → builds a finished, fully-filled site in **`dist/`**
+   (all 22 pages + `sitemap.xml` + `robots.txt`, brand colors applied, zero leftover tokens).
+3. **Deploy** the `dist/` folder: `vercel --prod --cwd dist` (or drag `dist/` into any host).
+
+That's it. To re-onboard or tweak, edit `config.json` and re-run — the token source pages are
+never modified.
+
+```jsonc
+// config.json — the only file you edit per client
+{ "business_name": "...", "phone_display": "(555) ...", "city": "...",
+  "ghl_contact_form_id": "...", "cities": ["...","..."], "reviews": [ {"author":"...","text":"..."} ] }
+```
+
+> **Advanced — change the layout/pages** (not per-client): re-run `build_site.py` from saved
+> "Save Complete" exports to regenerate the token source pages (see §7), then `generate.py`.
 
 ## 6. Deploy
 

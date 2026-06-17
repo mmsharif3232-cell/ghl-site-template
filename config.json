@@ -1,0 +1,52 @@
+{
+  "_README": "Onboard a client: edit the values below, then run `python3 generate.py` and deploy the dist/ folder. Only this file changes per client. Anything you leave out falls back to a sensible generic default (see generate.py).",
+
+  "business_name": "Summit Heating & Air Conditioning",
+  "business_short_name": "Summit Air",
+  "phone": "5550101234",
+  "phone_display": "(555) 010-1234",
+  "email": "info@summitair.com",
+  "city": "Springfield",
+  "address": "100 Main Street, Springfield, IL 62701",
+  "license": "LIC# 100200300",
+  "office_hours": "Mon – Fri: 8:00am – 6:00pm<br>Sat: 9:00am – 2:00pm<br>Sun: Closed",
+  "year_founded": "1998",
+  "years_in_business": "25",
+  "site_url": "https://summitair.example.com",
+
+  "ghl_contact_form_id": "PASTE_FORM_ID",
+  "ghl_calendar_id": "PASTE_CALENDAR_ID",
+  "ghl_chat_widget_id": "PASTE_CHAT_WIDGET_ID",
+
+  "social_facebook": "#",
+  "social_instagram": "#",
+  "social_youtube": "#",
+  "social_linkedin": "#",
+
+  "logo_url": "assets/logo-placeholder.svg",
+  "og_image_url": "assets/placeholder.svg",
+  "favicon_url": "assets/logo-placeholder.svg",
+  "favicon_svg_url": "assets/logo-placeholder.svg",
+  "manufacturer_badge_url": "",
+  "directions_url": "#",
+  "service_area_map_embed_url": "https://www.google.com/maps?q=Springfield,IL&output=embed",
+
+  "brand_primary": "#fc7504",
+  "brand_dark": "#182d43",
+
+  "cities": ["Springfield", "Chatham", "Rochester", "Sherman", "Riverton", "Auburn", "Jerome", "Leland Grove", "Southern View", "Grandview"],
+
+  "reviews": [
+    {"author": "Sarah M.", "text": "Fast, professional, and friendly — fixed our AC the same day we called. Highly recommend!", "time": "2 days ago"},
+    {"author": "David R.", "text": "Honest pricing and great communication from start to finish. No upsell, just good work.", "time": "1 week ago"},
+    {"author": "Lena P.", "text": "The technician explained everything clearly and left the place spotless. Five stars.", "time": "2 weeks ago"},
+    {"author": "Marcus T.", "text": "Installed a whole new system in a single day. Works perfectly and runs so quietly.", "time": "3 weeks ago"},
+    {"author": "Priya K.", "text": "Quick response on a hot day and a fair quote. We'll definitely use them again.", "time": "1 month ago"},
+    {"author": "Tom B.", "text": "Signed up for the maintenance plan — our system runs better than ever. Great team.", "time": "1 month ago"}
+  ],
+
+  "copy_overrides": {
+    "_note": "Optional. Add any {{TOKEN}} (lowercased) here to override its default copy, e.g. \"hero_headline\": \"...\".",
+    "hero_headline": "Reliable Heating & Air Conditioning You Can Count On"
+  }
+}
