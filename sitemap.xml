@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{SITE_URL}}/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/about.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/ac-maintenance.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/ac-repair.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/ac-replacement.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/air-conditioning.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/cities.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/contact.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/duct-cleaning.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/ductless-mini-splits.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/furnace-installation.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/furnace-repair.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/furnaces.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/heat-pump-repair.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/heat-pumps.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/heater-installation.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/heater-maintenance.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/heater-repair.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/heating.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/indoor-air-quality.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/reviews.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>{{SITE_URL}}/thermostat-repair.html</loc><changefreq>monthly</changefreq></url>
+</urlset>

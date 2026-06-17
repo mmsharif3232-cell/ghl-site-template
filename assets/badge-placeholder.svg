@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="275" height="275" viewBox="0 0 275 275" role="img" aria-label="Licensed and insured">
+  <circle cx="137.5" cy="137.5" r="118" fill="none" stroke="#182d43" stroke-width="6"/>
+  <circle cx="137.5" cy="137.5" r="100" fill="none" stroke="#fc7504" stroke-width="3"/>
+  <path d="M112 138l18 18 34-40" fill="none" stroke="#fc7504" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="137.5" y="196" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="1" fill="#182d43">LICENSED</text>
+  <text x="137.5" y="220" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="1" fill="#182d43">&amp; INSURED</text>
+</svg>

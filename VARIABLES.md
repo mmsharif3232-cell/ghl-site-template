@@ -2,24 +2,30 @@
 
 Everything Noor collects **before generating a client site** from this template.
 
-This site is a 1:1 visual clone of the reference HVAC homepage, rebuilt as standalone
-HTML/CSS with **no WordPress, no Gravity Forms, no chat/scheduler plugins, no analytics**.
-Every client-specific string is a `{{DOUBLE_BRACKET}}` token. Fill all 54 tokens, clone the
-`REPEAT` blocks to the right counts, drop in the 3 GoHighLevel IDs, and ship.
+This is a **22-page** HVAC website, rebuilt as standalone HTML/CSS with **no WordPress, no
+Gravity Forms, no chat/scheduler plugins, no analytics**. It is **template-safe**: every page
+contains only `{{DOUBLE_BRACKET}}` tokens (company data) or generic copy that names no specific
+business — no "Serving … since 19xx", no "Award-Winning", no specific Google/Facebook/Yelp
+rating numbers. Brand imagery is neutral placeholders. Fill the tokens, clone the `REPEAT`
+blocks, drop in the 3 GoHighLevel IDs, swap the placeholder assets, and ship.
+
+> Tokens double as **GHL custom values** (`{{ }}` syntax matches GHL merge fields).
 
 ## Files
 
 | File | What it is | Edit? |
 |------|------------|-------|
-| `index.html` | The page. Contains all `{{TOKENS}}` + `REPEAT` blocks. | Fill tokens |
+| `index.html` + 21 sibling pages | The 22-page site (home, services, about, contact, cities…). All `{{TOKENS}}` + generic copy. | Fill tokens |
+| `template.html` | The homepage as a standalone token template. | Reference |
 | `styles.css` | The exact theme stylesheet (YOOtheme/UIkit). Drives the look. | Don't touch |
-| `assets/` | Logos, icons, badges, photos + `uikit.min.js` runtime. | Swap per client |
-| `VARIABLES.md` | This checklist. | — |
-| `build.py` / `fill_preview.py` | Tooling that produced `index.html` / a filled demo. | Optional |
-| `_preview.html` | A fully-filled example render (reference only — not shipped). | — |
+| `assets/` | Placeholder logo/badges/photos + brand SVGs + `uikit.min.js` runtime. | Swap per client |
+| `sitemap.xml`, `robots.txt` | SEO, using `{{SITE_URL}}`. | Auto |
+| `build.py` / `build_site.py` / `fill_preview.py` | Generators (see README §7). | Maintainers |
 
-> **Find-and-replace** each `{{TOKEN}}` with the client value. Tokens appear verbatim in
-> `index.html`; nothing else needs editing for a basic launch.
+> **Find-and-replace** each `{{TOKEN}}` across all pages. New tokens beyond the homepage set:
+> `{{EMAIL}}`, `{{CITY}}` (used heavily site-wide), `{{YEAR_FOUNDED}}`, `{{YEARS_IN_BUSINESS}}`,
+> `{{MANUFACTURER_BADGE_URL}}`. SEO (title/description/canonical/OG/JSON-LD) is per-page and
+> already wired; set `{{SITE_URL}}` to the client domain.
 
 ---
 

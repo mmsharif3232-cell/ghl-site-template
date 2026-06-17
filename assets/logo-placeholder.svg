@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="120" viewBox="0 0 200 120" role="img" aria-label="Your logo">
+  <rect x="58" y="14" width="84" height="58" rx="12" fill="#fc7504"/>
+  <path d="M100 30l24 20h-7v18h-34V50h-7z" fill="#fff"/>
+  <circle cx="100" cy="55" r="6" fill="#fc7504"/>
+  <text x="100" y="98" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" letter-spacing="2" fill="currentColor">YOUR&#160;LOGO</text>
+</svg>

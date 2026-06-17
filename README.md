@@ -82,7 +82,8 @@ Everything a client sees is changeable. There are **four levels**, easiest → m
 | Category | Tokens |
 |---|---|
 | **Identity** | `{{BUSINESS_NAME}}`, `{{BUSINESS_SHORT_NAME}}` |
-| **Contact / NAP** | `{{PHONE}}`, `{{PHONE_DISPLAY}}`, `{{ADDRESS}}`, `{{DIRECTIONS_URL}}`, `{{LICENSE}}`, `{{OFFICE_HOURS}}` |
+| **Contact / NAP** | `{{PHONE}}`, `{{PHONE_DISPLAY}}`, `{{EMAIL}}`, `{{ADDRESS}}`, `{{DIRECTIONS_URL}}`, `{{LICENSE}}`, `{{OFFICE_HOURS}}` |
+| **Location & tenure** | `{{CITY}}` (used site-wide), `{{YEAR_FOUNDED}}`, `{{YEARS_IN_BUSINESS}}`, `{{MANUFACTURER_BADGE_URL}}` |
 | **SEO / social meta** | `{{SEO_TITLE}}`, `{{SEO_DESCRIPTION}}`, `{{SITE_URL}}`, `{{OG_IMAGE_URL}}`, `{{YEAR}}` |
 | **Hero** | `{{HERO_HEADLINE}}`, `{{HERO_SUBHEADLINE}}` |
 | **Body copy** | intro band + about (`{{INTRO_*}}`, `{{ABOUT_*}}`), services (`{{SERVICES_*}}`), reviews (`{{REVIEWS_*}}`), areas (`{{AREAS_*}}`), blog (`{{BLOG_*}}`), schedule (`{{SCHEDULE_*}}`), footer (`{{FOOTER_ABOUT}}`) |
@@ -159,6 +160,18 @@ start from fresh Save-Complete exports and adapt the path/anchor lists at the to
 
 ## 8. Notes & caveats
 
+- **Template-safe by design.** Every page contains only (a) `{{TOKENS}}` for company data
+  (name, phone, email, address, city, license, GHL IDs, social) or (b) generic copy that
+  names no specific business. The "screams-specific" lines were removed/genericized: no
+  "Serving … since 19xx", no "Award-Winning", no specific Google/Facebook/Yelp rating numbers,
+  no brand lock-in. Reviews are `{{REVIEW_*}}` placeholders.
+- **Brand imagery → neutral placeholders.** Logo → `assets/logo-placeholder.svg` ("YOUR LOGO"),
+  award/cert badges → `assets/badge-placeholder.svg` ("Licensed & Insured"), rating badges →
+  `assets/rating-stars.svg`, photos → `assets/placeholder.svg`, hero band → brand-navy. Swap
+  these for the client's real assets at launch.
+- **SEO included on every page:** unique tokenized `<title>` + meta description, `<link rel=canonical>`,
+  Open Graph + Twitter tags, HVACBusiness JSON-LD schema, plus `sitemap.xml` and `robots.txt`
+  (all using `{{SITE_URL}}`). Set `{{SITE_URL}}` to the client domain before submitting to search.
 - **Demo forms are static mockups**; real sites use the GHL form iframe via
   `{{GHL_CONTACT_FORM_ID}}` (chat + calendar via their IDs).
 - **Images load from the reference brand's host by default** (see §4 Level 4). For a launched
